@@ -1,0 +1,13 @@
+<% form_tag :action => 'create_tag'  do %>
+<%= error_messages_for 'tag' %>
+<b>Add A tag</b> <%= text_field 'tag', 'name', :class => "admin_input"  %>
+<!--
+<label for="tag_title">Parent ID</label><br/>
+<%= text_field 'tag', 'parent_id', :class => "admin_input" , :value => "0" %>
+<p><label for="tag_created_at">Created at</label><br/>
+<%= datetime_select 'tag', 'created_at' , :class => "admin_input" %></p>
+-->
+<%= hidden_field 'tag', 'post_id', :value => params[:id] %>
+<%= submit_tag "Add Tag" , :class => "admin_input" %>
+<br><br>
+<% end %>

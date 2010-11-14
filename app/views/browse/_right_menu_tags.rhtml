@@ -1,0 +1,22 @@
+<div class="normal_right_menu_tags_top">
+  <div class="normal_right_menu_tags_title">Tags</div>
+</div>
+<div class="normal_right_menu_tags_middle"> 
+  <div style="color:black;font-family:arial;"> 
+
+    <% @tags = Tag.find(:all, :select => "name, count(name)", :group => "name", :limit => 1000) %>
+
+    <% for tag in @tags %>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/tag/<%= tag.name %>" class="tag_link_right"><%= truncate(tag.name, 30) %> (<%= tag["count(name)"] %>)</a>
+<%#= link_to "#{truncate(tag.name, 30)}", {:action => "lookup_tag", :id => tag.id}, :class => "tag_link_right"  %> 
+     <br>
+    <% end %>
+
+
+  </div>
+</div>
+<div class="normal_right_menu_tags_bottom"> </div>
+<div style="height:10px"></div>
+

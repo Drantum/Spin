@@ -1,0 +1,10 @@
+<%= render :partial => "admin_menu" %>
+
+<h1>New post</h1>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %>
+<% end %>
+<br>
+<%= link_to '<< Back', :action => 'list' %>

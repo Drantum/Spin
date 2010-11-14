@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Upload/Select Image</title>
+	<% tinymce_js_url = "/javascripts/tiny_mce" %>
+	<script type="text/javascript" src="<%= tinymce_js_url %>/tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="<%= tinymce_js_url %>/utils/mctabs.js"></script>
+	<script type="text/javascript" src="<%= tinymce_js_url %>/utils/form_utils.js"></script>
+	<script type="text/javascript" src="<%= tinymce_js_url %>/utils/validate.js"></script>
+	<script type="text/javascript" src="<%= tinymce_js_url %>/utils/editable_selects.js"></script>
+	<script type="text/javascript" src="<%= tinymce_js_url %>/plugins/advimage/js/image.js"></script>
+	<link href="<%= tinymce_js_url %>/plugins/advimage/css/advimage.css" rel="stylesheet" type="text/css" />
+	<script language="javascript" type="text/javascript">
+	    function send_image_url_to_parent(child_input_id, parent_input_id)
+	    {
+	        var child_input_value = document.getElementById(child_input_id).value;
+			//alert(child_input_value)
+			parent_input_id = "src" // the id of the parent's input_box
+	        window.opener.insert_image_url(child_input_value, parent_input_id); // call parent's function, insert_value(parent's function is declared on parent page) through window.opener.
+	        window.close();
+	        return false;
+	    }
+	</script>
+</head>
+<body id="advimage" style="display: none">
+	<%= flash[:notice] if flash[:notice] %>
+    <!-- <form onsubmit="ImageDialog.insert();return false;" action="#"> -->
+		<div class="tabs">
+			<ul>
+				<li id="upload_tab" ><span><a href="javascript:mcTabs.displayTab('upload_tab','upload_panel');" onmousedown="return false;">Upload Image</a></span></li>
+				<li id="select_tab" class="current"><span><a href="javascript:mcTabs.displayTab('select_tab','select_panel');" onmousedown="return false;">Select Image</a></span></li>
+			</ul>
+		</div>
+
+		<div class="panel_wrapper">
+			<div id="upload_panel"  class="panel">	
+			   <%= form_tag ({:action => 'upload_tiny_mce_image', :controller => "admin"} , :multipart => true) %>						
+				<fieldset>
+						<legend>Upload Image</legend>
+
+						   <table>
+						   	<tr>
+						   		<td valign=top>
+						   			<table>
+						   				<tr>
+						   					<td>From Your Computer</td>
+											<td><input name="file" id="image_file" type ="file" onfocus = "focus_input('image_file')" onblur = "blur_input('image_file')"></td>
+						   				</tr>
+						   				<tr>
+						   					<td colspan=2>or</td>
+						   				</tr>
+						   				<tr>
+						   					<td>From The Web(URL)</td>
+											<td><input name="url" id="image_url" type="text" onfocus = "focus_input('image_url')" onblur = "blur_input('image_url')"></td>
+						   				</tr>
+						   			</table>
+						   		</td>
+						   	</tr>
+					   </table>
+				</fieldset>
+				<br>
+				<div align=center>
+					<input type="submit" value="Upload">
+				</div>
+				</form>						
+			</div>
+
+			<div id="select_panel"  class="panel current" style="height:100%;">
+					Select an Image to Use
+					<div id="tiny_mce_images">
+						<table>
+						   <% if @images.size > 0 %>
+							<% for image in @images %>
+								<tr>
+									<td><%= image_thumbnail(image) %></td>
+									<td><%= link_to "Delete", { :action => 'delete_image', :controller => "admin", :id => image.id}, :confirm => "Are you sure you want to delete this?" %>						</td>
+									<td>
+										<input type="hidden" id="url_box_<%= image.id %>" value="<%= image.url %>">
+										<a href="javascript:send_image_url_to_parent('url_box_<%= image.id %>', 'src');">Select</a>
+									</td>
+								</tr>
+							<% end %>
+						   <% else %>
+							<br><div align=center>No Images have been uploaded yet!</div>
+						   <% end %>
+						</table>
+					</div>
+					<div align=center>
+						<%#= page_entries_info @images, :entry_name => "Image" %>
+						<%= will_paginate @images %>
+					</div>
+
+			</div>
+		</div>
+		<!--
+		<div class="mceActionPanel">
+			<div style="float: left">
+				<input type="submit" id="insert" name="insert" value="{#insert}" />
+			</div>
+
+			<div style="float: right">
+				<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+			</div>
+		</div>
+		-->
+    <!-- </form> -->
+</body> 
+</html> 

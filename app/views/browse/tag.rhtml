@@ -1,0 +1,26 @@
+<h2>Sort By Tag: <%=  "#{params[:tag]}" %></h2>
+
+<% for tag in @other_tags %>
+
+<table width="100%" cellpadding=0 cellspacing=0>
+  <tr>
+    <td align=left>
+     <div class="normal_post_title"><%= link_to tag.post.title, :action => "view", :id => tag.post.id %></div>
+     <div class="normal_post_date"><%= "#{tag.post.created_at.strftime("%I:%m %p  %B %d, %Y")}" %></div>
+     <br>
+    </td>
+  </tr>
+  <tr>
+    <td colspan=2 align=left>
+     <div class="normal_post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%= tag.post.content %></div>
+    </td>
+  </tr>
+</table>
+
+<div class="normal_spacer"></div>
+<br>
+
+
+<% end %>
+
+

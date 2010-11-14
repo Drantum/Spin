@@ -1,0 +1,17 @@
+<%= error_messages_for :user %>
+
+<p><label for="post_title">User Name</label><br/>
+<%= text_field 'user', 'username', :class => "admin_input"  %></p>
+
+<p><label for="post_title">First Name</label><br/>
+<%= text_field 'user', 'first_name', :class => "admin_input"  %></p>
+
+<p><label for="post_created_at">Last Name</label><br/>
+<%= text_field 'user', 'last_name' , :class => "admin_input" %></p>
+
+<p><label for="post_updated_at">New Password</label><br/>
+<%= password_field 'user', 'password' , :class => "admin_input" %></p>
+
+<p><label for="post_updated_at">Confirm Password</label><br/>
+<%= password_field 'user', 'password_confirmation' , :class => "admin_input" %></p>
+

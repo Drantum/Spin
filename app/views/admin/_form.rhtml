@@ -1,0 +1,15 @@
+<p><label for="post_title">Title</label><br/>
+<%= text_field 'post', 'title', :class => "admin_input"  %></p>
+
+				
+<div align=right>
+	<a href="javascript:toggleEditor('<%= "post_content" %>');">Turn Editor On/Off</a>
+</div> 
+<%= text_area 'post', 'content' , :wrap => "physical" , :class => "mceEditor" , :style => "width:100%;height:500px", :id => "post_content" %></p>
+
+<p><label for="post_created_at">Created at</label><br/>
+<%= datetime_select 'post', 'created_at' , :class => "admin_input" %></p>
+
+<p><label for="post_updated_at">Updated at</label><br/>
+<%= datetime_select 'post', 'updated_at' , :class => "admin_input" %></p>
+

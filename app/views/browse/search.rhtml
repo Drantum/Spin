@@ -1,0 +1,4 @@
+<h2>Searching for <%= h "#{@search_for}" %></h2>
+<% @posts = @results %>
+<%= render :partial => "/browse/view_posts", :locals => {:posts => @results} %>
+

@@ -1,0 +1,23 @@
+<div class="normal_right_menu_search_top">
+  <div class="normal_right_menu_search_title">Search</div>
+</div>
+ <div class="normal_right_menu_search_middle"> 
+  <div style="padding-left:10px;color:white;font-family:arial;"> 
+   <% form_tag :action => "search", :controller => "browse" do%>
+     <table>
+      <tr>
+       <td>
+        <%= text_field :search, :search_for, :class => "normal_search_bar" %>
+       </td>
+       <td style="width:3px"></td>
+       <td>
+        <%= submit_tag "" , :class => "normal_search_button" %>
+       </td>
+      </tr>
+     </table>
+   <% end %>
+  </div>
+ </div>
+<div class="normal_right_menu_search_bottom"> </div>
+<div style="height:10px"></div>
+

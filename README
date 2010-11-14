@@ -1,0 +1,34 @@
+Hi! Welcome to the Readme for the Amethyst Blogging Software.
+ 
+ Amethyst is an open source Ruby on Rails based blog. It is designed to be
+ clean and intuitive, flexible, customizable, and quick. 
+
+Features
+  - Protected admin area to manage your blog securely.
+  - Tagging Support
+  - Post Archiving
+  - Built in RSS Generator so everyone can view your latest posts.
+  - Much more!
+
+Installing 
+  - Read the file INSTALL for more details. It's pretty easy!
+
+
+How to use Amethyst
+  - After you install amethyst, go to http://amethyst.domain.com/ to view your blog. 
+    This assumes you installed amethyst to a subdomain called amethyst.domain.com. To 
+    start adding posts, go to http://amethyst.domain.com/admin and log in with the 
+    default username and password, which are:
+     - Username: admin
+     - Password: admin
+    
+    After you're logged in, click on any of the menu items on the top. We 
+    recommend adding a post FIRST, by clicking "Add Post". It's pretty 
+    self-explanatory after that. Be sure to look at all the tools you can use 
+    and let us know if you need any help or have any suggestions. 
+
+Enjoy Amethyst! Visit our site: http://www.hulihanapplications.com to let us know
+about anything you're curious about or if you see any bugs/problems! We're constantly
+trying to update Amethyst to make it the best open source blog ever. We can't
+do that if we don't know what everyone wants, so if you see a feature you'd like, let
+us know, that's what we're here for!

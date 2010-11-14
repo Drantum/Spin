@@ -1,0 +1,5 @@
+Viewing Posts from <b><%= @date.strftime("%B, %Y") %></b><br><br>
+<%= render :partial => "view_posts", :locals => {:posts => @posts}  %>
+<%= will_paginate @posts %>
+<%#= render :partial => "paginate_posts" %>
+

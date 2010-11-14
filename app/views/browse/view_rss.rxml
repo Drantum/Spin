@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("#{@site_title}")
+    xml.link("http://"+request.env["HTTP_HOST"])
+    xml.description("#{@meta_desc}")
+    xml.language("yourLanguage('en')")
+    for post in @posts
+      xml.item do
+        xml.title(post.title)
+        xml.description(post.content)
+        # rfc822
+        xml.pubDate(post.created_at.rfc2822)
+      xml.link("http://"+request.env["HTTP_HOST"]+"/browse/view/#{post.id}")
+      xml.guid("#{post.id}")
+      end
+    end
+  }
+}

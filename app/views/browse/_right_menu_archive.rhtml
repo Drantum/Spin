@@ -1,0 +1,28 @@
+ <div class="normal_right_menu_archive_top">
+  <div class="normal_right_menu_archive_title">Archive</div>
+ </div> 
+ <div class="normal_right_menu_archive_middle"> 
+  <div style="padding-left:20px;color:white;font-family:arial;"> 
+
+   <% @archive_months_to_show = Setting.find(:first, :conditions => ["name = ?", "archive_months_to_show"], :limit => 1).value.to_i %>
+   <% for i in (0..@archive_months_to_show) %> 
+    <%
+     @start_time = Time.now.months_ago(i).beginning_of_month
+     @end_time = Time.now.months_ago(i).end_of_month
+     @archive_posts = Post.count(:all, :conditions => ["created_at > ? and created_at < ?", @start_time, @end_time])
+    %>
+    <% if @archive_posts != 0 %>
+     <%#= link_to "#{@start_time.strftime("%B %Y")} (#{@archive_posts})", {:action => "view_posts", :date => @start_time }, :class => "archive_link" %><br>
+     <%# Routed Link %>
+     <%#= link_to "#{@start_time.strftime("%B %Y")} (#{@archive_posts})", {"/#{@start_time.strftime("%m")}/#{@start_time.strftime("%Y")}"},  :class => "archive_link" %>
+     <a href="<%= "/#{@start_time.strftime("%Y")}/#{@start_time.strftime("%m")}" %>", class = "archive_link"><%= "#{@start_time.strftime("%B %Y")} (#{@archive_posts})" %></a> 
+    <% end %> 
+   <% end %> 
+
+
+
+  </div>
+ </div>
+<div class="normal_right_menu_archive_bottom"> </div>
+<div style="height:10px"></div>
+

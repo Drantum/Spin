@@ -1,0 +1,9 @@
+<div style="font-size:10px" align=left>Tags: 
+ <span class="normal_post_tags">
+  <% counter = 1 %>
+  <% for tag in @post.tags %>
+    <a class ="tag_link" href="/tag/<%= tag.name %>"><%= tag.name %></a><% if counter != @tags.size %>,<% end %>
+    <% counter += 1 %>
+  <% end %>
+ </span>
+</div>

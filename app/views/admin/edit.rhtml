@@ -1,0 +1,35 @@
+<%= render :partial => "admin_menu" %>
+
+
+<h1>Editing post</h1>
+
+<% form_tag :action => 'update', :id => @post do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<br>
+<div class="admin_comment_box" name="comments">
+ <% if @comments.size > 0 and @comments %>
+  <%= render :partial => "list_comments" %>
+ <% else %>
+  <font color=red>No Comments Found</font>
+ <% end %>
+ <br><br>
+</div>
+
+<br>
+
+<div class="admin_comment_box" name="tags">
+ <% if @tags.size > 0 %>
+  <%= render :partial => "list_tags" %>
+ <% else %> 
+  <font color=red>No Tags Found</font>
+ <% end %>
+ <br><br>
+ <b>New Tag</b>
+<%= render :partial => "tag_form" %>
+</div>
+
+<%= link_to 'Show', :action => 'show', :id => @post %> |
+<%= link_to 'Back', :action => 'list' %>

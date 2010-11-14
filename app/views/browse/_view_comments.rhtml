@@ -1,0 +1,37 @@
+<div align=left>
+	<h3><%= @comments.size %> Comments</h3>
+</div>
+
+<% for @comment in @comments %>
+  <div  class="<%= cycle("comment_box_a", "comment_box_b") %>" style="padding:5px;margin-bottom:5px">
+	<table callpadding=0 cellspacing=0 style="width:100%;">
+		   <tr>
+		   	<td style="width:60px" align=left valign=top> 
+				 <%= comment_avatar(@comment) %><br>
+		  	</td>
+		    <td style="width:100%;padding-left:10px;" align=left valign=top>
+		      <div align=left>
+			     <div class="normal_post_date"><%= "#{@comment.created_at.strftime("%I:%M %p  %B %d, %Y")}" %></div>		      	
+			   	  <b><%= h(@comment.name) %> says...</b>								
+				 <br>
+		      </div><br>
+		     <div>
+		     	<%= h(@comment.comment) %><br><br>
+		     </div>
+		    </td>   
+		   </tr>
+	</table>
+  </div>
+
+
+<% end %>
+
+<div align=left>
+	<h3>Add A Comment</h3>
+</div>
+<% @comment = nil %>
+<div align=left><%= render :partial => "comment_form" %></div>
+<br>
+<div class="admin_spacer"></div>
+<br>
+<div align=left><%= link_to "<< Back ", :action => "index" %></div>

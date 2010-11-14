@@ -1,0 +1,11 @@
+<%= render :partial => "admin_menu" %>
+
+<h1>Edit Your settings</h1>
+
+<% form_tag :action => 'update_user', :id => @user do %>
+  <%= render :partial => 'user_form' %>
+  <%= submit_tag 'Update' %>
+<% end %>
+<br>
+<%= link_to '<< Back', :action => 'list' %>
+
