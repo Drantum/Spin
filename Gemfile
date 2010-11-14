@@ -7,6 +7,12 @@ gem 'rails', '3.0.1'
 
 gem 'mysql2'
 
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+
+gem 'will_paginate', '~> 3.0.beta'
+
+gem 'tiny_mce'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

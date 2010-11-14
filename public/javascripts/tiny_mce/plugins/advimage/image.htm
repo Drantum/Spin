@@ -9,13 +9,6 @@
 	<script type="text/javascript" src="../../utils/editable_selects.js"></script>
 	<script type="text/javascript" src="js/image.js"></script>
 	<link href="css/advimage.css" rel="stylesheet" type="text/css" />
-	<script language="javascript" type="text/javascript">
-	    function insert_image_url(url, input_id)
-	    {
-			input_id = 'src'
-	        document.getElementById(input_id).value = url;
-	    }
-	</script>
 </head>
 <body id="advimage" style="display: none">
     <form onsubmit="ImageDialog.insert();return false;" action="#"> 
@@ -37,14 +30,7 @@
 								<td class="column1"><label id="srclabel" for="src">{#advimage_dlg.src}</label></td>
 								<td colspan="2"><table border="0" cellspacing="0" cellpadding="0">
 									<tr> 
-									  <td>
-									  	<input name="src" type="text" id="src" value="" class="mceFocus" onchange="ImageDialog.showPreviewImage(this.value);" />
-										<!-- Start Custom Image Uploader Code -->
-										    <a title="Upload/Select Image" href="#" onclick="window.open(&quot;/admin/tiny_mce_images&quot;, &quot;&quot;, &quot;resizable=yes, location=no, width=400, height=640, menubar=no, status=no, scrollbars=yes&quot;); return false;"> 
-												<img src="img/images.png" border=0 style="vertical-align:middle">
-											</a>
-										<!-- End Custom Image Uploader Code --> 
-									  </td> 
+									  <td><input name="src" type="text" id="src" value="" class="mceFocus" onchange="ImageDialog.showPreviewImage(this.value);" /></td> 
 									  <td id="srcbrowsercontainer">&nbsp;</td>
 									</tr>
 								  </table></td>
@@ -238,13 +224,8 @@
 		</div>
 
 		<div class="mceActionPanel">
-			<div style="float: left">
-				<input type="submit" id="insert" name="insert" value="{#insert}" />
-			</div>
-
-			<div style="float: right">
-				<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
-			</div>
+			<input type="submit" id="insert" name="insert" value="{#insert}" />
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
 		</div>
     </form>
 </body> 

@@ -33,7 +33,7 @@ class BrowseController < ApplicationController
 
   def index 
    #redirect_to :action => "view_latest"
-   @posts_per_page = get_setting("posts_per_page").to_i 
+   @posts_per_page = get_setting("posts_per_page") # .to_i error in Rails 3 but why? 
    @posts = Post.paginate :page => params[:page], :per_page => @posts_per_page, :order => "created_at DESC" #paginate via will_paginate
   end
   
