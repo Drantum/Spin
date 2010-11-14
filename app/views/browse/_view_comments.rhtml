@@ -5,10 +5,7 @@
 <% for @comment in @comments %>
   <div  class="<%= cycle("comment_box_a", "comment_box_b") %>" style="padding:5px;margin-bottom:5px">
 	<table callpadding=0 cellspacing=0 style="width:100%;">
-		   <tr>
-		   	<td style="width:60px" align=left valign=top> 
-				 <%= comment_avatar(@comment) %><br>
-		  	</td>
+		   <tr>		   	
 		    <td style="width:100%;padding-left:10px;" align=left valign=top>
 		      <div align=left>
 			     <div class="normal_post_date"><%= "#{@comment.created_at.strftime("%I:%M %p  %B %d, %Y")}" %></div>		      	

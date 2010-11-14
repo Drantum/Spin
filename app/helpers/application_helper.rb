@@ -15,11 +15,4 @@ module ApplicationHelper
    end
  end
  
-  def comment_avatar(comment)
-    if comment.email 
-      return "<img src='http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5.hexdigest(comment.email.downcase)}&s=50'>"
-    else # don't use gravatar, check local avatars 
-         return "<img src=\"/images/default_avatar.png\""
-    end
-  end 
 end
