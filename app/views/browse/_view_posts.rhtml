@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <td colspan=2 align=left>
-     <div class="normal_@post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%= @post.content %></div>
+     <div class="normal_@post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=raw @post.content %></div>
     </td>
   </tr>
 </table>
@@ -28,7 +28,7 @@
  <tr>
   <td align=left><%= link_to image_tag('comment_add.png', :border => 0) , :action => "view", :id => @post %></td>
   <td valign=middle align=left>
-   &nbsp;<%= link_to "<b>(#{@comments_count})</b> Comments", :action => "view", :id => @post %> 
+   &nbsp;<%= link_to "(#{@comments_count}) Comments", :action => "view", :id => @post %> 
   </td>
  </tr>
 </table>

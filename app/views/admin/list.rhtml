@@ -8,7 +8,7 @@
     <td style="width:40px"><%=  post.created_at.strftime("%m/%d/%y") %></td>
     <td style="width:300px">
      <div class="admin_post_title"><%=h post.title %></div>
-     <div class="admin_post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=h truncate(post.content) %></div>
+     <div class="admin_post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%= truncate(post.content) %></div>
     </td>
     <td class="admin_col_show"><%= link_to 'Show', :action => 'show', :id => post %></td>
     <td class="admin_col_edit"><%= link_to 'Edit', :action => 'edit', :id => post %></td>
