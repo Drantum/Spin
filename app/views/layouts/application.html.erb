@@ -3,7 +3,7 @@
 <head>
 <% # Include TinyMCE before other JS to avoid problems -%>
 <%= include_tiny_mce_if_needed %>
-<%= stylesheet_link_tag 'theme' %>
+<link href="/stylesheets/<%= @style %>.css" media="screen" rel="stylesheet" type="text/css" />
 <%= javascript_include_tag 'application' %>
 
 <title><%= h @meta_title %></title>

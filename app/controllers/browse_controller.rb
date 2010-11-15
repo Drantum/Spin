@@ -1,5 +1,4 @@
-class BrowseController < ApplicationController
-  before_filter :load_settings #load the settings from db
+class BrowseController < ApplicationController 
 
   include SimpleCaptcha::ControllerHelpers  # Load SimpleCaptcha
 
@@ -97,27 +96,8 @@ class BrowseController < ApplicationController
   end
 
 protected
-  def get_setting(name) # get a setting
-   # @setting = Setting.find(:first, :conditions => ["name = ?", name], :limit => 1 )
-   @setting = Setting.where("name = ?", name).limit(1).first
-   if @setting
-    return @setting.value
-   else
-    return false
-   end
-  end
-
   def examine_url # look at url and get pagination info, etc.
    @offset = params[:offset].to_i ||= 0 # if offset isn't set to anything, set @offset to 0
   end  
-
-  def load_settings
-   @site_title = get_setting("site_title")
-   @site_desc = get_setting("site_description")
-   @meta_title = get_setting("site_title")
-   @meta_keywords = get_setting("site_keywords")
-   @meta_desc = get_setting("site_description")
-  end
-
 
 end

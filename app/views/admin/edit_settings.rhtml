@@ -13,7 +13,9 @@
    <% elsif setting.item_type == "bool" %>
     On<input type=radio name="setting[<%= h setting.name %>]" value="1" <% if setting.value == "1" %>CHECKED<% end %> >
     Off<input type=radio name="setting[<%= h setting.name %>]" value="0" <% if setting.value == "0" %>CHECKED<% end %> >
-   <% else %>
+	<% elsif setting.item_type == "select" %>
+	 <select name="setting[<%= h setting.name %>]"><option>default <% if setting.value == "default" %><% end %></option><option>Meins <% if setting.value == "meins" %><% end %></option></select>
+	<% else %>
     <%= "Unknown setting type: #{setting.item_type}" %>
    <% end %>
   </td>
