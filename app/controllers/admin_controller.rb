@@ -211,7 +211,7 @@ end
       filename = clean_filename(File.basename(params[:url]))#.downcase # get the filename only
       if check_image_format(filename) #the filename is valid
        @url_file = open(params[:url]) # Open the image from net
-       tmp_path = "#{RAILS_ROOT}/tmp/images" #location of the tmp folder
+       tmp_path = "#{RAILS.root}/tmp/images" #location of the tmp folder
        FileUtils.mkdir_p(tmp_path) if !File.exist?(tmp_path) # create the tmp folder if it doesn't exist
        @file = open(tmp_path + "/" + filename, "wb") # open up the new file, binary style
        @file.write(@url_file.read) # copy the image
@@ -286,7 +286,7 @@ protected
  
  def create_normal_image(image, filename, item)
   #use wb+ or wb to transfer as binary for binary sensitive files(pics, so, etc)
-  path = "#{RAILS_ROOT}/public/images/uploaded_images/normal"
+  path = "#{RAILS.root}/public/images/uploaded_images/normal"
   FileUtils.mkdir_p(path) if !File.exist?(path)  
 
   # Resize Main Image
@@ -384,7 +384,7 @@ protected
 
  def create_thumbnail_image(image, filename, item)
   #use wb+ or wb to transfer as binary for binary sensitive files(pics, so, etc)
-  path = "#{RAILS_ROOT}/public/images/uploaded_images/thumbnails"
+  path = "#{RAILS.root}/public/images/uploaded_images/thumbnails"
   FileUtils.mkdir_p(path) if !File.exist?(path)  
   #file.rewind # rewind the read pointer since create_image was called first
   #image = Magick::Image.from_blob(file.read).first    # read in image binary

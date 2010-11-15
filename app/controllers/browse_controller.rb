@@ -33,19 +33,21 @@ class BrowseController < ApplicationController
 
   def index 
    #redirect_to :action => "view_latest"
-   @posts_per_page = get_setting("posts_per_page") # .to_i error in Rails 3 but why? 
+   @posts_per_page = get_setting("posts_per_page") # .to_i error in Rails 3 but why?  
    @posts = Post.paginate :page => params[:page], :per_page => @posts_per_page, :order => "created_at DESC" #paginate via will_paginate
   end
   
   def search
    @search_for = params[:search][:search_for] # what to search for
-   @results = Post.find(:all, :conditions => ["title like ? or content like ?", "%#{@search_for}%", "%#{@search_for}%" ], :limit => 100 )
+   # @results = Post.find(:all, :conditions => ["title like ? or content like ?", "%#{@search_for}%", "%#{@search_for}%" ], :limit => 100 )
+   @results = Post.where("title like ? or content like ?", "%#{@search_for}%", "%#{@search_for}%").limit(100)
   end
 
   def view_latest
    @posts_per_page = get_setting("posts_per_page").to_i # how many posts per page should I show?
    examine_url # get all the info from the url you might need(pagination, etc.)
-   @posts = Post.find(:all, :offset => @offset, :limit => @posts_per_page, :order => "created_at DESC") 
+   # @posts = Post.find(:all, :offset => @offset, :limit => @posts_per_page, :order => "created_at DESC") 
+   @posts = Post.order("created_at DESC").limit(@posts_per_page).offset(@offset)
   end 
   
   def view
@@ -56,7 +58,8 @@ class BrowseController < ApplicationController
     flash[:notice] = "<font color=red>No post found with the id: #{params[:id]}"
     #redirect_to :view_latest
    end
-   @comments = Comment.find(:all, :conditions => ["post_id = ?", params[:id] ], :limit => 500, :order => "created_at DESC")
+   # @comments = Comment.find(:all, :conditions => ["post_id = ?", params[:id] ], :limit => 500, :order => "created_at DESC")
+   @comments = Comment.where("post_id = ?", params[:id]).limit(500).order("created_at DESC")
    @meta_title = @post.title + " - #{@meta_title}"
    @meta_keywords = @post.content
    @meta_desc = @post.content
@@ -70,28 +73,33 @@ class BrowseController < ApplicationController
    end
    @posts_per_page = get_setting("posts_per_page").to_i # how many posts per page should I show?
    examine_url
-   @posts = Post.find(:all, :offset => @offset, :limit => @posts_per_page, :order => "created_at DESC", :conditions => ["created_at > ? and created_at < ?", @time , @time.end_of_month] )
+   # @posts = Post.find(:all, :offset => @offset, :limit => @posts_per_page, :order => "created_at DESC", :conditions => ["created_at > ? and created_at < ?", @time , @time.end_of_month] )
+   @posts = Post.offset(@offset).limit(@posts_per_page).order("created_at DESC").where("created_at > ? and created_at < ?", @time , @time.end_of_month)
   end  
 
   def view_rss
     headers["Content-Type"] = "application/xml" 
-    @posts = Post.find(:all, :order => "created_at DESC", :limit => 10 )
+    # @posts = Post.find(:all, :order => "created_at DESC", :limit => 10 )
+    @posts = Post.order("created_at DESC").limit(10)
     render :layout => false
   end
 
   def lookup_tag
    @tag = Tag.find(params[:id]) #look up the tag
-   @other_tags = Tag.find(:all, :conditions => ["name = ?", @tag.name], :order => "created_at DESC")
+   # @other_tags = Tag.find(:all, :conditions => ["name = ?", @tag.name], :order => "created_at DESC")
+   @other_tags = Tag.where("name = ?", @tag.name).order("created_at DESC")
   end
 
   def tag
-   #@tag = Tag.find() #look up the tag
-   @other_tags = Tag.find(:all, :conditions => ["name = ?", params[:tag]], :order => "created_at DESC")
+   # @tag = Tag.find() #look up the tag
+   # @other_tags = Tag.find(:all, :conditions => ["name = ?", params[:tag]], :order => "created_at DESC")
+   @other_tags = Tag.where("name = ?", params[:tag]).order("created_at DESC")
   end
 
 protected
   def get_setting(name) # get a setting
-   @setting = Setting.find(:first, :conditions => ["name = ?", name], :limit => 1 )
+   # @setting = Setting.find(:first, :conditions => ["name = ?", name], :limit => 1 )
+   @setting = Setting.where("name = ?", name).limit(1).first
    if @setting
     return @setting.value
    else

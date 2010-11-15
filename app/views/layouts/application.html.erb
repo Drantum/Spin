@@ -6,6 +6,10 @@
 <%= stylesheet_link_tag 'theme' %>
 <%= javascript_include_tag 'application' %>
 
+<title><%= h @meta_title %></title>
+<meta name="keywords" content="<%= h(truncate(@meta_keywords)) %>">
+<meta name="description" content="<%= h(truncate(@meta_desc)) %>">
+
 <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/browse/view_rss" />
 
 </head>
