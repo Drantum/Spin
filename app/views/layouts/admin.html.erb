@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<% # Include TinyMCE before other JS to avoid problems -%>
+<%= include_tiny_mce_if_needed %>
+<%=stylesheet_link_tag 'admin' %>
+<%= javascript_include_tag 'application' %>
+
+<title>Admin - <%= yield(:title) || "Center" %></title>
+<meta name="keywords" content="<%= h(truncate(@meta_keywords)) %>">
+<meta name="description" content="<%= h(truncate(@meta_desc)) %>">
+
+<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/browse/view_rss" />
+
+</head>
+<body> 
+<div id="header">
+  <%= render :partial => "login" %>
+</div>
+<div id="nav">
+	<%= render :partial => "admin_menu" %>
+</div>
+<div id="content">
+	<% if flash[:notice] %>
+	<p id="flash" class="notice"><%= flash[:notice] %></p>
+	<% end %>
+	<% if flash[:error] %>
+	<p id="flash" class="error"><%= flash[:error] %></p>
+	<% end %>
+
+	<h1><%= yield(:title) %></h1>  
+	<%= yield  %>
+</div>
+</body>
+</html>

@@ -1,27 +1,24 @@
-<%= render :partial => "admin_menu" %>
-
-<h1>Edit Settings</h1>
-<% form_tag ({:action => "update_settings"}) do %>
-<table width="100%" cellpadding=5 cellspacing=5 style="">
- <% for setting in @settings %>
- <% @class = cycle("admin_row_a", "admin_row_b") %>
- <tr class="<%= @class %>">
-  <td><span class="admin_setting_name"><%= h setting.name %></span></td>
+<% title "Edit Settings" %>
+<%= form_tag ({:action => "update_settings"}) do %>
+<table width="100%" cellpadding=5 cellspacing=5>
+ <% for setting in @settings %> 
+ <tr>
+  <td><%= setting.name %></td>
   <td align=right >
    <% if setting.item_type == "string" %>
-    <input type=text name="setting[<%= h setting.name %>]" value="<%= h setting.value %>" class="setting_item_string">
+    <input type=text name="setting[<%= h setting.name %>]" value="<%= h setting.value %>">
    <% elsif setting.item_type == "bool" %>
     On<input type=radio name="setting[<%= h setting.name %>]" value="1" <% if setting.value == "1" %>CHECKED<% end %> >
     Off<input type=radio name="setting[<%= h setting.name %>]" value="0" <% if setting.value == "0" %>CHECKED<% end %> >
 	<% elsif setting.item_type == "select" %>
-	 <select name="setting[<%= h setting.name %>]"><option>default <% if setting.value == "default" %><% end %></option><option>Meins <% if setting.value == "meins" %><% end %></option></select>
+	 <select name="setting[<%= h setting.name %>]"><option>default <% if setting.value == "default" %><% end %></option><option>frederik <% if setting.value == "frederik" %><% end %></option></select>
 	<% else %>
     <%= "Unknown setting type: #{setting.item_type}" %>
    <% end %>
   </td>
  </tr>
- <tr class="<%= @class %>">
-  <td valign=middle colspan=2>
+ <tr>
+  <td colspan=2>
    <div class="admin_setting_description">
     <%= h setting.description %>
    </div>
@@ -31,8 +28,3 @@
 </table>
 <div align=left><%= submit_tag "Update Settings" %></div>
 <% end %>
-
-
-<div class="admin_spacer"></div>
-<br><br>
-<%= link_to '<< Back', :action => 'list' %>

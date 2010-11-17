@@ -1,4 +1,8 @@
 Blog::Application.routes.draw do
+  devise_for :users, :path => "admin", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
+
+	match 'admin' => 'admin#index', :as => 'user_root'
+
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
 

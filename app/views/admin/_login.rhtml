@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+	<div id="user_box">
+    Welcome <span style="font-style:oblique"><%= current_user.email %></span>. 
+    <%= link_to "Log out?", destroy_user_session_path %><br />
+	 	Last login <span style="font-style:oblique"><%= current_user.last_sign_in_at %></span><br />
+		Last IP <span style="font-style:oblique"><%= current_user.last_sign_in_ip %></span>
+	</div>
+<% end %>

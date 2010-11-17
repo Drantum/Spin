@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<%=stylesheet_link_tag 'admin' %>
+<%= javascript_include_tag 'application' %>
+
+<title><%= @meta_title %> - <%= yield :title %></title>
+<meta name="keywords" content="<%= h(truncate(@meta_keywords)) %>">
+<meta name="description" content="<%= h(truncate(@meta_desc)) %>">
+
+<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/browse/view_rss" />
+
+</head>
+<body>
+<%- flash.each do |name, msg| -%>
+	<div id="error">
+		<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+	</div>
+<%- end -%>
+<div id="login">
+	<h1><%= yield(:title) %></h1> 
+	<%= yield  %>
+</div>
+</body>
+</html>

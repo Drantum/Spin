@@ -1,6 +1,5 @@
-<% form_tag :action => 'create_tag'  do %>
-<%= error_messages_for 'tag' %>
-<b>Add A tag</b> <%= text_field 'tag', 'name', :class => "admin_input"  %>
+<%= form_tag :action => 'create_tag'  do %>
+<%= text_field 'tag', 'name', :class => "admin_input"  %>
 <!--
 <label for="tag_title">Parent ID</label><br/>
 <%= text_field 'tag', 'parent_id', :class => "admin_input" , :value => "0" %>

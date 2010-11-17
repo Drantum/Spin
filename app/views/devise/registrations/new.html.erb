@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+	<% title "Sign up" %>
+	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  	<%= devise_error_messages! %>
+
+  	<p><%= f.label :email %><br />
+  	<%= f.text_field :email %></p>
+
+  	<p><%= f.label :password %><br />
+  	<%= f.password_field :password %></p>
+
+  	<p><%= f.label :password_confirmation %><br />
+  	<%= f.password_field :password_confirmation %></p>
+
+  	<p><%= f.submit "Sign up" %></p>
+	<% end %>
+<% else %>
+	<% title "Please Login" %>
+	<p>Please login to create new user</p>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

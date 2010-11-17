@@ -3,7 +3,7 @@
 <head>
 <% # Include TinyMCE before other JS to avoid problems -%>
 <%= include_tiny_mce_if_needed %>
-<link href="/stylesheets/<%= @style %>.css" media="screen" rel="stylesheet" type="text/css" />
+<%=stylesheet_link_tag @style %>
 <%= javascript_include_tag 'application' %>
 
 <title><%= h @meta_title %></title>
@@ -14,7 +14,12 @@
 
 </head>
 <body> 
-
+<div id="user_nav">
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Sign out", destroy_user_session_path %>
+  <% end %>
+</div>
 
 <table align=center ><tr><td>
  <table cellpadding=0 cellspacing=0 align=center width="100%">
@@ -39,7 +44,7 @@
 
 	<table width="100%" align="center" >
 	 <tr>
-	  <td style="width:75%;" align=center valign=top>
+	  <td class="content" style="width:75%;" align=center valign=top>
 	   <div class="blog_bg_top"></div> 	
 	   <div class="blog_bg_middle">
      	    <div style="color: green"><%= flash[:notice] %></div>
@@ -55,8 +60,8 @@
 	  <td style="width:25%" valign=top align=left>
 	   <%# Right Menu %> 
            <div class="normal_right_menu">
-   	    <%= render :partial => "browse/right_menu" %>
-           </div>
+   	    		<%= render :partial => "browse/right_menu" %>
+			  </div>
 	
 	  </td>
 	 </tr>

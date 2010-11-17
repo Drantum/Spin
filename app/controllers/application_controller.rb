@@ -13,15 +13,23 @@ class ApplicationController < ActionController::Base
   end
 
   def load_settings
-	 @style = get_setting("theme")
+	@style = get_setting("theme")
    @site_title = get_setting("site_title")
    @site_desc = get_setting("site_description")
    @meta_title = get_setting("site_title")
    @meta_keywords = get_setting("site_keywords")
    @meta_desc = get_setting("site_description")
   end
-  # Pick a unique cookie name to distinguish our session data from others'
-  session :session_key => '_blog_session_id'
-  protect_from_forgery  # protect against site forgery
 
+  layout :layout_by_resource
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "admin"
+    end
+  end
+
+  protect_from_forgery  # protect against site forgery
 end

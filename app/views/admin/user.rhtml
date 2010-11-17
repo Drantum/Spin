@@ -1,0 +1,20 @@
+<% title "User Control" %>
+
+<% for user in @user %>
+<table width="100%" text-aling="center">
+  <tr>
+    <td style="width:40px"><b>E-Mail</b></td>
+	 <td style="width:40px"><b>Last login date</b></td>
+    <td style="width:40px"><b>Last IP</b></td>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <td style="width:40px"><%= user.email %></td>
+	 <td style="width:40px"><%= user.last_sign_in_at.strftime("%m/%d/%y") %></td>
+    <td style="width:40px"><%= user.last_sign_in_ip %></td>
+  </tr>
+</table>
+<% end %>
+
+<h3><%= link_to 'New user', :action => 'sign_up' %></h3>

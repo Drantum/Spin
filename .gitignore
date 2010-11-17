@@ -1,4 +1,5 @@
 .bundle
+Gemfile.look
 db/*.sqlite3
 db/seeds.rb
 db/schema.rb

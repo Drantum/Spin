@@ -19,11 +19,6 @@ class CreateSettings < ActiveRecord::Migration
    Setting.create(:name => "enable_menu_search", :value => "1", :setting_type => "blog", :description => "Will the archive menu be visible?", :item_type => "bool")
    Setting.create(:name => "enable_menu_tools", :value => "0", :setting_type => "blog", :description => "Will the archive menu be visible?", :item_type => "bool")
    Setting.create(:name => "enable_menu_other", :value => "1", :setting_type => "blog", :description => "Will the archive menu be visible?", :item_type => "bool")
-   Setting.create(:name => "item_thumbnail_width", :title => "Item Thumbnail Width",  :value => "100", :setting_type => "Item Object", :description => "This is the width(in pixels) of the thumbnails that are generated.", :item_type => "string")
-   Setting.create(:name => "item_thumbnail_height", :title => "Item Thumbnail Height",  :value => "100", :setting_type => "Item Object", :description => "TThis is the height(in pixels) of the thumbnails that are generated.", :item_type => "string")        
-   Setting.create(:name => "resize_item_images", :title => "Uniform Item Image Size",  :value => "0", :setting_type => "Item Object", :description => "Enable this if you would like all the images that are added to images resized to a particular size(you can choose the size below).", :item_type => "bool")
-   Setting.create(:name => "item_image_width", :title => "Item Image Width",  :value => "500", :setting_type => "Item Object", :description => "This is the width you want your images(in pixels) to be automatically resized to. Only used if Uniform Item Image Size is turned on.", :item_type => "string")
-   Setting.create(:name => "item_image_height", :title => "Item Image Height",  :value => "500", :setting_type => "Item Object", :description => "This is the height you want your images(in pixels) to be automatically resized to. Only used if Uniform Item Image Size is turned on.", :item_type => "string")   
    Setting.create(:name => "theme", :setting_type => "blog", :description => "Choose your favourite Template for this Blog.", :item_type => "slelect")    
   end
 

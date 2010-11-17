@@ -1,0 +1,93 @@
+body {
+	margin:0;
+}
+
+#login {
+	margin:70px auto;
+	6px 6px;
+	background:#e6e4e4;
+	border:0.35em solid #bfbebe;
+	padding:0.5em 22px 0.5em 1.5em;
+	position:relative;
+	width:28em;
+}
+
+#error {
+	background-color:#F3C2C2;
+	padding:20px;
+}
+
+.notice {
+	background-color:#a4fea6;
+	padding:20px;
+	text-align:center;
+}
+
+.error {
+	background-color:#F3C2C2;
+	padding:20px;
+	text-align:center;
+}
+
+#header {
+	background:url("../../images/admin/admin_header.png") repeat-x #313d45;
+	height:96px;
+}
+
+#nav {	
+	background:#2c2c2c;
+	height:50px;
+	margin-top:-20px;
+}
+
+.navigation li{
+	list-style:none outside none;
+	float:left;
+	margin-top:10px;
+	font-size:20px;
+}
+
+#content {
+	padding:10px 100px 100px;
+	background:#D4E7F6;
+	min-height:300px;
+	color:#2b2b2b;
+}
+
+.normal_post_title {
+	font-size:20px;
+	font-weight:bold;
+}
+
+.post_end {
+	border:1px inset;
+	width:600px;
+}
+
+.admin_setting_description {
+	font-size:12px;
+	font-style:italic;
+	margin-top:-10px;
+}
+
+#user_box {
+	color:#D7D8D7;
+	text-align:right;
+	padding:15px;
+}
+
+#user_box a {
+	color:#aaaaaa;
+}
+
+a:visited {
+	color:#776769;
+}
+
+a:hover {
+	color:#d2d2d3;
+}
+
+a {
+	color:#776769;
+}

@@ -13,6 +13,8 @@ gem 'will_paginate', '~> 3.0.beta'
 
 gem 'tiny_mce'
 
+gem 'devise'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

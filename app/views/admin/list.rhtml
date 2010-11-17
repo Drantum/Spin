@@ -1,13 +1,11 @@
-<%= render :partial => "admin_menu" %>
-<div style="font-size:10px">
-<h1>Listing posts</h1>
+ <% title "Listing posts" %>
 
 <% for post in @posts %>
-<table width="100%">
+<table width="100%" border="1px" text-aling="center">
   <tr>
     <td style="width:40px"><%=  post.created_at.strftime("%m/%d/%y") %></td>
     <td style="width:300px">
-     <div class="admin_post_title"><%=h post.title %></div>
+     <div class="admin_post_title"><b><%= post.title %></b></div>
      <div class="admin_post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%= truncate(post.content) %></div>
     </td>
     <td class="admin_col_show"><%= link_to 'Show', :action => 'show', :id => post %></td>
@@ -15,13 +13,9 @@
     <td class="admin_col_destroy"><%= link_to 'Destroy', { :action => 'destroy', :id => post }, :confirm => "Delete #{post.title}?", :method => :post %></td>
   </tr>
 </table>
-<div class="admin_spacer"></div>
 
 <% end %>
-
-
 
 <br />
 
 <h3><%= link_to 'New post', :action => 'new' %></h3>
-</div>
