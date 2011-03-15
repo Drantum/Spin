@@ -34,6 +34,13 @@ body {
 	height:96px;
 }
 
+#logo {
+	background:url("../../images/admin/admin_logo.png") no-repeat;
+	float:left;
+	height:90px;
+	width:350px;
+}
+
 #nav {	
 	background:#2c2c2c;
 	height:50px;
@@ -74,6 +81,7 @@ body {
 	color:#D7D8D7;
 	text-align:right;
 	padding:15px;
+	float:right;
 }
 
 #user_box a {

@@ -3,7 +3,7 @@
 <head>
 <% # Include TinyMCE before other JS to avoid problems -%>
 <%= include_tiny_mce_if_needed %>
-<%=stylesheet_link_tag 'admin' %>
+<%= stylesheet_link_tag 'admin' %>
 <%= javascript_include_tag 'application' %>
 
 <title>Admin - <%= yield(:title) || "Center" %></title>
@@ -15,6 +15,7 @@
 </head>
 <body> 
 <div id="header">
+	<div id="logo"></div>
   <%= render :partial => "login" %>
 </div>
 <div id="nav">
