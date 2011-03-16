@@ -5,15 +5,13 @@
 <p><label for="post_title">Your Name</label><br/>
 <%= text_field 'comment', 'name' , :class => "normal_input" %></p>
 
-<p><label for="post_title">Email(This won't be shown)</label><br/>
+<p><label for="post_title">Email(This won't be shown, if you have Gravatar your Avatar will show)</label><br/>
 <%= text_field 'comment', 'email' , :class => "normal_input" %></p>
 
 <p><label for="post_content">Comment</label><br/>
 <%= text_area 'comment', 'comment' , :class => "normal_textarea", :wrap => "hard" %></p>
 
 <%= hidden_field 'comment', 'post_id', :value => params[:id]  %>
-
-<%= show_simple_captcha(:label => "Type in the code above. ") %>
 
 <%= submit_tag "Add Comment!" , :class => "normal_input" %>
 <% end %>

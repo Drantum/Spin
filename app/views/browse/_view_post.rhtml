@@ -5,14 +5,14 @@
      <div class="normal_post_title"><%=h post.title %></div>
      <div class="normal_post_date">
       <%= "#{post.created_at.strftime("%I:%M %p  %B %d, %Y")}" %>
-      &nbsp;by&nbsp;<span class="normal_post_author"><%= post.user.first_name %></span>
+     <%# &nbsp;by&nbsp;<span class="normal_post_author"><%= post.user.first_name %></span>
      </div>
      <br>
     </td>
   </tr>
   <tr>
     <td colspan=2 align=left>
-     <div class="normal_post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=raw post.content %></div>
+     <div class="normal_post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=raw coderay(post.content) %></div>
     </td>
   </tr>
 </table>
@@ -22,9 +22,6 @@
 <% if @tags.size > 0 %>
   <%= render :partial => "view_tags"  %>
 <% end %>
-
+<br>
+<div class="post_end"></div>
 <div class="normal_spacer"></div>
-
-
-
-

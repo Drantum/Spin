@@ -1,4 +1,4 @@
-<% if @posts.size == 0 %> 
+<% if @posts.size == "0" %> 
  No Posts Found.
 <% else %>
 
@@ -6,35 +6,32 @@
 <table width="100%" cellpadding=0 cellspacing=0>
   <tr>
     <td align=left>
-     <div class="normal_post_title"><%= link_to @post.title, :action => "view", :id => @post %></div>
+     <div class="post_title"><%= link_to @post.title, :action => "view", :id => @post %></div>
      <div class="normal_post_date"><%= "#{@post.created_at.strftime("%I:%M %p  %B %d, %Y")}" %></div>
      <br>
     </td>
   </tr>
   <tr>
     <td colspan=2 align=left>
-     <div class="normal_@post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=raw @post.content %></div>
+     <div class="normal_@post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=raw coderay(@post.content) %></div>
     </td>
   </tr>
 </table>
 <br>
 
-
+<div class="post_end"></div>
 
 <% 
 	@comments_count = Comment.count(:conditions => ["post_id = ?", @post.id ] ) 
 %>
-<table align=left>
- <tr>
-  <td align=left><%= link_to image_tag('comment_add.png', :border => 0) , :action => "view", :id => @post %></td>
-  <td valign=middle align=left>
-   &nbsp;<%= link_to "(#{@comments_count}) Comments", :action => "view", :id => @post %> 
-  </td>
- </tr>
-</table>
+<ul class="comments">
+  <li class="comments_add"><%= link_to "comment_add", {:action => "view", :id => @post} %></li>
+  <li class=comments_count>
+   &nbsp;<%= link_to "(#{@comments_count}) Comments", {:action => "view", :id => @post}, :class => "comments_count_link" %> 
+  </li>
+</ul>
 
-<br>
-<br>
+<br />
 
 <% @tags = Tag.find(:all, :conditions => ["post_id = ?", @post.id], :limit => 100) %>
 <% if @tags.size > 0 %>
@@ -45,8 +42,5 @@
 <div class="normal_spacer"></div>
 <br>
 <% end %>
-
-
-
 
 <% end %>
