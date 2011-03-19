@@ -1,19 +1,20 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
 
-gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
-
 gem 'will_paginate', '~> 3.0.beta'
 
 gem 'tiny_mce'
 
 gem 'devise'
+
+gem 'coderay'
+gem 'RedCloth'
 
 # Use unicorn as the web server
 # gem 'unicorn'
