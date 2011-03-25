@@ -2,8 +2,8 @@
 <table width="100%" cellpadding=0 cellspacing=0>
   <tr>
     <td align=left>
-     <div class="normal_post_title"><%=h post.title %></div>
-     <div class="normal_post_date">
+     <div class="post_title"><%=h post.title %></div>
+     <div class="post_date">
       <%= "#{post.created_at.strftime("%I:%M %p  %B %d, %Y")}" %>
      <%# &nbsp;by&nbsp;<span class="normal_post_author"><%= post.user.first_name %></span>
      </div>
@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td colspan=2 align=left>
-     <div class="normal_post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=raw coderay(post.content) %></div>
+     <div class="post_content">&nbsp;&nbsp;&nbsp;&nbsp;<%=raw coderay(post.content) %></div>
     </td>
   </tr>
 </table>
@@ -24,4 +24,4 @@
 <% end %>
 <br>
 <div class="post_end"></div>
-<div class="normal_spacer"></div>
+<div class="spacer"></div>

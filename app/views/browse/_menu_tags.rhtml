@@ -1,0 +1,6 @@
+<% @tags = Tag.find(:all, :select => "name, count(name)", :group => "name", :limit => 1000) %>
+
+<% for tag in @tags %>
+	<a href="/tag/<%= tag.name %>" class="menu_tag_link"><%= truncate(tag.name) %> (<%= tag["count(name)"] %>)</a>
+	<br>
+<% end %>

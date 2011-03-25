@@ -1,0 +1,11 @@
+<% @archive_months_to_show = Setting.find(:first, :conditions => ["name = ?", "archive_months_to_show"], :limit => 1).value.to_i %>
+<% for i in (0..@archive_months_to_show) %> 
+<%
+   @start_time = Time.now.months_ago(i).beginning_of_month
+   @end_time = Time.now.months_ago(i).end_of_month
+   @archive_posts = Post.count(:all, :conditions => ["created_at > ? and created_at < ?", @start_time, @end_time])
+%>
+<% if @archive_posts != 0 %>    
+   <a href="<%= "/#{@start_time.strftime("%Y")}/#{@start_time.strftime("%m")}" %>", class = "menu_archive_link"><%= "#{@start_time.strftime("%B %Y")} (#{@archive_posts})" %></a><br /> 
+   <% end %> 
+<% end %> 

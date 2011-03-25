@@ -1,0 +1,5 @@
+<% if File.exists?(RAILS_ROOT + "/public/themes/#{@style}/images/rss.png") %>
+	<%= link_to image_tag(RAILS_ROOT + "/public/themes/#{@style}/images/rss.png", :class => "menu_feeds_rss", :alt => "view rss feed", :border => 0), :action => "view_rss", :controller => "browse"  %>
+<% else %>
+	<%= link_to image_tag("rss.png", :class => "menu_feeds_rss", :alt => "view rss feed", :border => 0), :action => "view_rss", :controller => "browse"  %>
+<% end %>

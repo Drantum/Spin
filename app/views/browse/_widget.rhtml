@@ -1,0 +1,14 @@
+<% @widgets = Widget.where("active = 1").order("id") %>
+<% for widget in @widgets %>
+	<div class="menu_<%= widget.css %>_top">
+		<div class="menu_<%= widget.css %>_title"><%= widget.title %></div>
+	</div>
+	<div class="menu_<%= widget.css %>_middle">
+		<% if File.exists?(RAILS_ROOT + "/app/views/browse/_#{widget.content}.rhtml") %>
+			<%= render :partial => "browse/#{widget.content}" %>
+		<% else %>
+			<%= widget.content %>
+		<% end %>
+	</div>
+	<div class="menu_<%= widget.css %>_bottom"> </div>  
+<% end %>

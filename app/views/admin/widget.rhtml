@@ -1,0 +1,28 @@
+<% title "Widgets" %>
+
+<%= form_tag ({:action => "update_widgets"}) do %>
+<table width="100%" border="1px" text-aling="center">
+	<tr>
+		<th>Title</th>
+		<th>Content</th>
+		<th>Css name</th>
+		<th></th>
+		<th>Order</th>
+	</tr>
+	<% for widget in @widgets %> 
+  <tr>
+    <td style="width:40px"><input type=text name="title" id="setting[<%= widget.id_widget %>]" value="<%= widget.title %>"></td>
+    <td style="width:300px"><input type=text name="setting[<%= widget.id_widget %>]" value="<%= widget.content %>"></td>
+		<td style="width:300px"><input type=text name="setting[<%= widget.id_widget %>]" value="<%= widget.css %>"></td>
+		<td style="width:300px">
+	    On<input type=radio name="setting[<%= widget.id_widget %>]" value="1" <% if widget.active == 1 %>CHECKED<% end %> >
+	    Off<input type=radio name="setting[<%= widget.id_widget %>]" value="0" <% if widget.active == 0 %>CHECKED<% end %> >
+		</td>
+		<td style="width:300px"><input type=text name="setting[<%= widget.id_widget %>]" value="<%= widget.id %>"></td>
+  </tr>
+	<% end %>
+</table>
+<div align=center style="margin-top:20px;"><%= submit_tag "Update Settings" %></div>
+<% end %>
+
+<h4><%= link_to 'New Widget', :action => 'new_widget' %></h4>
