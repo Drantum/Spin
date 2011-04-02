@@ -1,7 +1,5 @@
 class BrowseController < ApplicationController 
 
-  include SimpleCaptcha::ControllerHelpers  # Load SimpleCaptcha
-
   helper :browse # load the view helper
   #caches_page :view # Cache individual post views
 
@@ -16,16 +14,11 @@ class BrowseController < ApplicationController
   end
 
   def create_comment
-
-    if simple_captcha_valid?  
      @comment = Comment.new(params[:comment])
      @comment.ip = "#{request.env['REMOTE_ADDR']}"
      if @comment.save # comment was saved successfully
       flash[:notice] = "Comment Added Successfully. Thanks #{params[:comment][:name]}!<br>"
-     end 
-    else #Captcha Didn't pass. 
-      flash[:notice] = "<font color=red>Your comment wasn't created, because you entered in the wrong code!</font><br>"
-    end  
+     end  
     redirect_to :action => "view", :id => params[:comment][:post_id]
   end
 
