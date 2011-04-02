@@ -59,7 +59,7 @@ before_filter :authenticate_user!
     # @comments = Comment.find(:all, :conditions => ["post_id = ?", params[:id] ], :limit => 500)
 	 @comments = Comment.where("post_id = ?", params[:id]).limit(500)
   end
-  
+
   def edit_settings
    @settings = Setting.find(:all)
   end
@@ -89,15 +89,15 @@ before_filter :authenticate_user!
     @setting = Setting.find(:first, :conditions => ["name = ?", name])
     if @setting.value != value # the value of the setting has changed
      if @setting.update_attribute("value", value) # update the setting
-      flash[:notice] << "The setting(#{name}) was updated!<br>"
+      flash[:notice] << "The setting(#{name}) was updated!"
      else
-      flash[:notice] << "<font color=red>The setting(#{name}) failed updating!</font><br>"
+      flash[:notice] << "<font color=red>The setting(#{name}) failed updating!</font>"
      end
     else
-     #flash[:notice] << "<font color=grey>The Setting(#{name}) has not changed.<br></font>"
+     #flash[:notice] << "<font color=grey>The Setting(#{name}) has not changed.</font>"
     end
    end
-   redirect_to :action => "edit_settings"
+    redirect_to :action => "index"
   end
 
   def destroy    
@@ -122,5 +122,73 @@ before_filter :authenticate_user!
    @tag.destroy # delete the comment
    flash[:notice] = "Tag destroyed!"
    redirect_to :action => "edit", :id => params[:post_id]
+  end
+
+	def widget
+	 @widgets = Widget.order("row")	
+	end
+
+	def update_widgets
+	 # This must change because it is still a lot of query
+	 params[:title].each do |widget_id, value|
+   @widget = Widget.find(:first, :conditions => ["id_widget = ?", widget_id])
+    if @widget.title != value # the value of the setting has changed
+     if @widget.update_attribute("title", value) # update the setting
+     end
+    end
+   end
+	 params[:content].each do |widget_id, value|
+   @widget = Widget.find(:first, :conditions => ["id_widget = ?", widget_id])
+    if @widget.content != value # the value of the setting has changed
+     if @widget.update_attribute("content", value) # update the setting
+     end
+    end
+   end
+	 params[:css].each do |widget_id, value|
+   @widget = Widget.find(:first, :conditions => ["id_widget = ?", widget_id])
+    if @widget.css != value # the value of the setting has changed
+     if @widget.update_attribute("css", value) # update the setting
+     end
+    end
+   end
+	 params[:active].each do |widget_id, value|
+   @widget = Widget.find(:first, :conditions => ["id_widget = ?", widget_id])
+    if @widget.active != value # the value of the setting has changed
+     if @widget.update_attribute("active", value) # update the setting
+     end
+    end
+	 end
+		redirect_to :action => "widget"
+	end
+
+	def themes
+   @themes = Array.new
+   themes_dir = File.join(RAILS_ROOT + "/public/themes/") # the folder containing the themes
+   Dir.new(themes_dir).entries.each do |file|
+     if (file.to_s != ".") && (file != "..")
+      @themes << file
+     end
+   end
+  end
+ 
+  def delete_theme
+    theme = params[:theme]
+    if theme == @style # they are trying to delete the active theme
+      flash[:failure] = t("notice.invalid_permissions")
+      #flash[:failure] = "Sorry, you can't delete the active theme! Please change your theme first."
+    else
+      themes_dir = RAILS_ROOT + "/public/themes"
+      theme_dir = themes_dir + "/" + theme
+      theme_config_file = File.join(theme_dir, "theme.yml")
+      theme_config = YAML::load(File.open(theme_config_file)) # get theme configuration
+           
+      themes_layout_dir = RAILS_ROOT + "/app/views/layouts/themes"
+      theme_layout_dir = themes_layout_dir + "/" + theme
+      FileUtils.rm_rf (theme_dir) if File.exists?(theme_dir)# erase theme directory
+      FileUtils.rm_rf (theme_layout_dir) if File.exists?(theme_layout_dir)# erase theme layout directory, if it exists
+			flash[:notice] << "The Theme(#{theme}) was delete!"   
+  end
+    
+    redirect_to :action => "themes"
   end
 end

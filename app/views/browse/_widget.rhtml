@@ -1,4 +1,4 @@
-<% @widgets = Widget.where("active = 1").order("id") %>
+<% @widgets = Widget.where("active = 1").order("row") %>
 <% for widget in @widgets %>
 	<div class="menu_<%= widget.css %>_top">
 		<div class="menu_<%= widget.css %>_title"><%= widget.title %></div>
