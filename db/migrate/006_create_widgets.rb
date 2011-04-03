@@ -1,7 +1,7 @@
 class CreateWidgets < ActiveRecord::Migration
   def self.up
     create_table :widgets do |t|
-      t.column :title :text
+      t.column :title, :text
       t.column :content, :text
 			t.column :css, :text
       t.column :active, :integer, :default => 1
